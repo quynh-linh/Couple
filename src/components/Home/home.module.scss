@@ -1,0 +1,49 @@
+.wrapper{
+    &-banner{
+        &-ImgCenter{
+            width: 750px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &-dateStart{
+                position: absolute;
+                font-size: 5.9rem;
+                font-family: var(--font-style);
+                font-optical-sizing: auto;
+                font-weight: 500;
+                font-style: normal;
+                top: 60px;
+                color: #828282;
+                box-shadow: rgba(81, 81, 81, 0.25) 0px 50px 100px -20px, rgba(106, 16, 16, 0.3) 0px 30px 60px -30px, rgba(42, 54, 66, 0.35) 0px -2px 6px 0px inset;
+                border-radius: 10px;
+            }
+            &-img{
+                height: 500px;
+                width: 330px;
+                object-fit: cover;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+            }
+            &-imgLeft,
+            &-imgRight{
+                height: 350px;
+                width: 230px;
+                object-fit: cover;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+            }
+            
+        }
+    }
+    &_NumberOfDays{
+        background: url(https://utfs.io/f/46d8bcf5-fe05-4a08-923f-f6a56c2a8b02-m15jgy.jpg);
+        object-fit: contain;
+        &-title{
+            font-family: var(--font-Italic);
+            color: white;
+            font-size: 2rem;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+        }
+    }
+}

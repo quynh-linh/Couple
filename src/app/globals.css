@@ -2,7 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Sedan+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Major+Mono+Display&family=Sedan+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Major+Mono+Display&family=Sedan+SC&family=Sevillana&display=swap');
 :root {
-  
+    --font-header: 'Sedan SC', serif;
+    --font-style: 'Edu TAS Beginner', cursive;
+    --font-Italic: 'Sevillana', cursive;
+    --bg-color: #f8f7f5;
 }
 
+body {
+    background-color: var(--bg-color);
+}
