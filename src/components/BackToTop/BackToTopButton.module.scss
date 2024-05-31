@@ -1,0 +1,28 @@
+.back-to-top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, 
+      opacity .5s, visibility .5s;
+    opacity: 1;
+    visibility: visible;
+    z-index: 1000;
+    &:hover {
+        cursor: pointer;
+        background-color: black;
+        color: white;
+    }
+    &:active {
+        background-color: #555;
+    }
+}

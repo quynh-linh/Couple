@@ -9,6 +9,8 @@ import { calculateTimeDifference } from "@/utils/calculateTimeDifference";
 import useIsInViewport from "@/hooks/useIsInViewport";
 import { updateElementClass } from "@/utils/updateElementClass";
 import Title from "@/components/Text/Title";
+import ImageBanner from "@/components/Image/ImageBanner";
+import Albums from "@/components/Albums/Albums";
 const cx = classNames.bind(styles);
 export default function Home() {
      const [timeDifference, setTimeDifference] = useState(calculateTimeDifference(new Date()));
@@ -42,54 +44,44 @@ export default function Home() {
      return(
           <div className={cx("wrapper",'mt-8')}>
                <div className={cx('wrapper-banner','flex items-center justify-around')}>
-                    <div 
-                         className="animate__animated"
-                         ref={refBannerLeft}
-                    >
-                         <Image
-                              className={cx('wrapper-banner-ImgCenter-imgLeft')}
-                              src={images.bannerCoupleLeft}
-                              alt="Banner Couple"
-                              style={{display: isInViewportBannerLeft ? "block" : "none"}}
-                         />
-                    </div>
+                    <ImageBanner
+                         id="BannerLeft"
+                         isViewPort={isInViewportBannerLeft}
+                         src={images.bannerCoupleLeft}
+                         refBanner={refBannerLeft}
+                    />
                     <div className={cx('wrapper-banner-ImgCenter')}>
                          <Image className={cx('wrapper-banner-ImgCenter-img')} src={images.bannerCouple} alt="Banner Couple"/>
                          <div className={cx('wrapper-banner-ImgCenter-dateStart','flex items-center justify-between')}>
                               <Title/>
                          </div>
                     </div>
-                    <div 
-                         className="animate__animated animate__fadeInTopRight"
-                         ref={refBannerRight}
-                    >
-                         <Image 
-                              style={{display: isInViewportBannerRight ? "block" : "none"}}
-                              className={cx('wrapper-banner-ImgCenter-imgRight')} 
-                              src={images.bannerCoupleRight} 
-                              alt="Banner Couple"
-                         />
-                    </div>
+                    <ImageBanner
+                         id="BannerRight"
+                         isViewPort={isInViewportBannerRight}
+                         src={images.bannerCoupleRight}
+                         refBanner={refBannerRight}
+                    />
                </div>
                <div className={cx("wrapper_NumberOfDays",'flex items-center mt-4')}>
                     <div className="w-2/4 ml-6">
-                         <p className={cx('wrapper_NumberOfDays-title')}>Number of days knowing each other</p>
-                         <div className={cx('flex items-center justify-between mt-14')}>
+                         <p className={cx('wrapper_NumberOfDays-title')}>Yêu nhau được bao ngày rồi ta ?</p>
+                         <div className={cx('flex items-center justify-between mt-14','wrapper_NumberOfDays-content')}>
                               <div className="text-center">
                                    <p className={cx('text-4xl text-white')} suppressHydrationWarning >{timeDifference.days.toString()}</p>
-                                   <p className="text-xl mt-2">DAYS</p>
+                                   <p className="text-xl mt-2">NGÀY</p>
                               </div>
                               <div className="text-center">
                                    <p className={cx('text-4xl text-white')} suppressHydrationWarning >{timeDifference.hours.toString()}</p>
-                                   <p className="text-xl mt-2">HOURS</p>
+                                   <p className="text-xl mt-2">GIỜ</p>
                               </div>
                               <div className="text-center">
                                    <p className={cx('text-4xl text-white')} suppressHydrationWarning >{timeDifference.minutes.toString()}</p>
-                                   <p className="text-xl mt-2">MINUTES</p>
+                                   <p className="text-xl mt-2">PHÚT</p>
                               </div>
                               <div className="text-center">
                                    <p className={cx('text-4xl text-white')} suppressHydrationWarning >{timeDifference.seconds.toString()}</p>
-                                   <p className="text-xl mt-2">SECONDS</p>
+                                   <p className="text-xl mt-2">GIÂY</p>
                               </div>
                          </div>
                     </div>
@@ -100,6 +92,7 @@ export default function Home() {
                          </video>
                     </div>
                </div>
+               <Albums/>
           </div>
      )
 }

@@ -7,14 +7,13 @@ export default function Header(props:HeaderProps) {
     return(
         <header className={cx('header','flex items-center justify-between')}>
             <ul className={cx('flex items-center')}>
-               <li className={cx('mr-4')}>Our Story</li> 
-               <li className={cx('mr-4')}>Celebrate</li>
-               <li>Album</li>
+               <li className={cx('mr-4','header-font')}>Câu chuyện</li> 
+               <li className={cx('mr-4','header-font')}>Kỉ niệm</li>
             </ul>
             <p className={cx('header-title')}>Linh & Yen</p>
             <ul className={cx('flex items-center')}>
-               <li className={cx('mr-4')}>Introduce</li> 
-               <li className={cx('header-login')}>Login</li>
+               <li className={cx('mr-4','header-font')}>Giới thiệu</li> 
+               <li className={cx('header-login')}>Tập ảnh</li>
             </ul>
         </header>
     )

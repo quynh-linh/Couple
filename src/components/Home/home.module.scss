@@ -24,13 +24,41 @@
                 object-fit: cover;
                 box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
             }
-            &-imgLeft,
-            &-imgRight{
+            &-imgBanner{
                 height: 350px;
                 width: 230px;
                 object-fit: cover;
                 box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
                 border-radius: 10px;
+                &-seeMore{
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgb(0 0 0 / 60%);
+                    top: 0;
+                    right: 0;
+                    left: 0;
+                    z-index: 1000;
+                    &-btn{
+                        color: black;
+                        border: 1px solid black;
+                        background-color: white;
+                        font-size: 13px;
+                        padding: 5px 20px;
+                        font-weight: 600;
+                        border-radius: 5px;
+                        &:hover{
+                            cursor: pointer;
+                            background-color: black;
+                            color: white;
+                        }
+                    }
+                }
             }
             
         }
@@ -41,6 +69,14 @@
         &-title{
             font-family: var(--font-Italic);
             color: white;
+            font-size: 2rem;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+        }
+        &-content{
+            font-family: var(--font-Italic);
+            color: rgb(199, 197, 197);
             font-size: 2rem;
             font-optical-sizing: auto;
             font-weight: 500;
