@@ -4,7 +4,6 @@ import classNames from "classnames/bind"
 import styles from "@/components/Home/home.module.scss";
 import images from "@/assets/images";
 import Image from "next/image";
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useEffect, useRef, useState } from "react";
 import { calculateTimeDifference } from "@/utils/calculateTimeDifference";
 import useIsInViewport from "@/hooks/useIsInViewport";
@@ -27,16 +26,16 @@ export default function Home() {
 
      useEffect(() => {
           updateElementClass(
-            refBannerLeft.current,
-            isInViewportBannerLeft,
-            'animate__fadeInTopLeft',
-            'animate__fadeOutTopLeft'
+               refBannerLeft.current,
+               isInViewportBannerLeft,
+               'animate__fadeInTopLeft',
+               'animate__fadeOutTopLeft'
           );
           updateElementClass(
-            refBannerRight.current,
-            isInViewportBannerRight,
-            'animate__fadeInTopRight',
-            'animate__fadeOutTopRight'
+               refBannerRight.current,
+               isInViewportBannerRight,
+               'animate__fadeInTopRight',
+               'animate__fadeOutTopRight'
           );
      }, [isInViewportBannerLeft, isInViewportBannerRight]);
 
@@ -44,13 +43,14 @@ export default function Home() {
           <div className={cx("wrapper",'mt-8')}>
                <div className={cx('wrapper-banner','flex items-center justify-around')}>
                     <div 
-                         className="animate__animated animate__fadeInTopLeft"
+                         className="animate__animated"
                          ref={refBannerLeft}
                     >
                          <Image
                               className={cx('wrapper-banner-ImgCenter-imgLeft')}
                               src={images.bannerCoupleLeft}
                               alt="Banner Couple"
+                              style={{display: isInViewportBannerLeft ? "block" : "none"}}
                          />
                     </div>
                     <div className={cx('wrapper-banner-ImgCenter')}>
@@ -63,7 +63,12 @@ export default function Home() {
                          className="animate__animated animate__fadeInTopRight"
                          ref={refBannerRight}
                     >
-                         <Image className={cx('wrapper-banner-ImgCenter-imgRight')} src={images.bannerCoupleRight} alt="Banner Couple"/>
+                         <Image 
+                              style={{display: isInViewportBannerRight ? "block" : "none"}}
+                              className={cx('wrapper-banner-ImgCenter-imgRight')} 
+                              src={images.bannerCoupleRight} 
+                              alt="Banner Couple"
+                         />
                     </div>
                </div>
                <div className={cx("wrapper_NumberOfDays",'flex items-center mt-4')}>

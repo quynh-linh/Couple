@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import 'animate.css';
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css");
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Sedan+SC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Major+Mono+Display&family=Sedan+SC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Major+Mono+Display&family=Sedan+SC&family=Sevillana&display=swap');
@@ -15,6 +15,7 @@
 
 body {
     background-color: var(--bg-color);
+    overflow-x: hidden;
 }
 .heart {
     position: fixed;
@@ -23,12 +24,12 @@ body {
     transform: translateY(0);
     animation: fall 3s linear forwards;
 }
-  
+
 @keyframes fall {
     from {
-        transform: translateY(0vh) translateX(-10vw); 
+        transform: translateY(0vh) translateX(-10vw);
     }
     to {
-        transform: translateY(105vh) translateX(10vw); 
+        transform: translateY(105vh) translateX(10vw);
     }
-} 
+}
