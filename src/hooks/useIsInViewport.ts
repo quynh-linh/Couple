@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, MutableRefObject } from 'react';
-
+import 'intersection-observer';
 function useIsInViewport(ref: MutableRefObject<Element | null>): boolean {
     const [isIntersecting, setIsIntersecting] = useState(false);
 
