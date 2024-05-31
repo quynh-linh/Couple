@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/controllers/libs/google-auth.js", "src/components/common/HeartCursor/HeartCursor.tsx"],
   "exclude": ["node_modules"]
 }

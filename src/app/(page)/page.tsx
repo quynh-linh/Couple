@@ -5,12 +5,18 @@ import styles from "@/components/Home/home.module.scss";
 import images from "@/assets/images";
 import Image from "next/image";
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { calculateTimeDifference } from "@/utils/calculateTimeDifference";
+import useIsInViewport from "@/hooks/useIsInViewport";
+import { updateElementClass } from "@/utils/updateElementClass";
+import Title from "@/components/Text/Title";
 const cx = classNames.bind(styles);
 export default function Home() {
      const [timeDifference, setTimeDifference] = useState(calculateTimeDifference(new Date()));
-
+     const refBannerLeft = useRef<HTMLDivElement | null>(null);
+     const refBannerRight = useRef<HTMLDivElement | null>(null);
+     const isInViewportBannerLeft = useIsInViewport(refBannerLeft);
+     const isInViewportBannerRight = useIsInViewport(refBannerRight);
      useEffect(() => {
           const interval = setInterval(() => {
                setTimeDifference(calculateTimeDifference());
@@ -18,23 +24,47 @@ export default function Home() {
      
           return () => clearInterval(interval);
      }, []);
-     
+
+     useEffect(() => {
+          updateElementClass(
+            refBannerLeft.current,
+            isInViewportBannerLeft,
+            'animate__fadeInTopLeft',
+            'animate__fadeOutTopLeft'
+          );
+          updateElementClass(
+            refBannerRight.current,
+            isInViewportBannerRight,
+            'animate__fadeInTopRight',
+            'animate__fadeOutTopRight'
+          );
+     }, [isInViewportBannerLeft, isInViewportBannerRight]);
 
      return(
           <div className={cx("wrapper",'mt-8')}>
                <div className={cx('wrapper-banner','flex items-center justify-around')}>
-                    <Image className={cx('wrapper-banner-ImgCenter-imgLeft')} src={images.bannerCoupleLeft} alt="Banner Couple"/>
+                    <div 
+                         className="animate__animated animate__fadeInTopLeft"
+                         ref={refBannerLeft}
+                    >
+                         <Image
+                              className={cx('wrapper-banner-ImgCenter-imgLeft')}
+                              src={images.bannerCoupleLeft}
+                              alt="Banner Couple"
+                         />
+                    </div>
                     <div className={cx('wrapper-banner-ImgCenter')}>
                          <Image className={cx('wrapper-banner-ImgCenter-img')} src={images.bannerCouple} alt="Banner Couple"/>
                          <div className={cx('wrapper-banner-ImgCenter-dateStart','flex items-center justify-between')}>
-                              <p className="mx-4">26</p>
-                              <FavoriteIcon/>
-                              <p className="mx-4">04</p>
-                              <FavoriteIcon/>
-                              <p>2024</p>
+                              <Title/>
                          </div>
                     </div>
-                    <Image className={cx('wrapper-banner-ImgCenter-imgRight')} src={images.bannerCoupleRight} alt="Banner Couple"/>
+                    <div 
+                         className="animate__animated animate__fadeInTopRight"
+                         ref={refBannerRight}
+                    >
+                         <Image className={cx('wrapper-banner-ImgCenter-imgRight')} src={images.bannerCoupleRight} alt="Banner Couple"/>
+                    </div>
                </div>
                <div className={cx("wrapper_NumberOfDays",'flex items-center mt-4')}>
                     <div className="w-2/4 ml-6">

@@ -1,0 +1,37 @@
+.text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > span {
+        text-transform: uppercase;
+        animation: glow 4s ease-in-out infinite; // Thay đổi giá trị thời gian lặp lại
+
+        &:nth-child(2) {
+            animation-delay: 0.5s; // Tăng giá trị animation-delay để đảm bảo độ trễ cho mỗi span
+        }
+    
+        &:nth-child(3) {
+            animation-delay: 1s;
+        }
+    
+        &:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+    
+        &:nth-child(5) {
+            animation-delay: 2s;
+        }
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        color: #FFF;
+        text-shadow: 0 0 10px rgb(230, 13, 13), 0 0 50px rgb(230, 13, 13), 0 0 100px rgb(230, 13, 13);
+    }
+
+    10%, 90% {
+        color: black;
+        text-shadow: none;
+    }
+}
