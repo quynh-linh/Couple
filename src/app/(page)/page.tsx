@@ -13,18 +13,18 @@ import ImageBanner from "@/components/Image/ImageBanner";
 import Albums from "@/components/Albums/Albums";
 const cx = classNames.bind(styles);
 export default function Home() {
-     const [timeDifference, setTimeDifference] = useState(calculateTimeDifference(new Date()));
+     const [timeDifference, setTimeDifference] = useState(calculateTimeDifference());
      const refBannerLeft = useRef<HTMLDivElement | null>(null);
      const refBannerRight = useRef<HTMLDivElement | null>(null);
      const isInViewportBannerLeft = useIsInViewport(refBannerLeft);
      const isInViewportBannerRight = useIsInViewport(refBannerRight);
      useEffect(() => {
           const interval = setInterval(() => {
-               setTimeDifference(calculateTimeDifference());
+              setTimeDifference(calculateTimeDifference());
           }, 1000);
-     
+  
           return () => clearInterval(interval);
-     }, []);
+      }, []);
 
      useEffect(() => {
           updateElementClass(

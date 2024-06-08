@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import images from "@/assets/images";
 const inter = Inter({ subsets: ["latin"] });
 import Favicon from '../../public/favicon.ico';
+import ReduxProvider from "@/redux/provider";
 export const metadata: Metadata = {
   // metadataBase: new URL(`${process.env.NEXTAUTH_URL}`),
   title: {
@@ -35,7 +35,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ReduxProvider>
+          {children}
+        </ReduxProvider>
+      </body>
     </html>
   );
 }

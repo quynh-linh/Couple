@@ -30,7 +30,8 @@ export default function ImageBanner({refBanner,src,isViewPort,id}:ImageProps) {
             className="animate__animated"
             ref={refBanner}
         >
-            <div 
+            <a 
+                href={id ==="BannerLeft" ? "/profiles/" : ""}
                 style={{position: "relative"}}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -59,7 +60,7 @@ export default function ImageBanner({refBanner,src,isViewPort,id}:ImageProps) {
                         </div>
                     </div>
                 ) : ""}
-            </div>
+            </a>
         </div>
     )
 }

@@ -1,0 +1,24 @@
+.profile{
+    position: relative;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &-parent{
+        display: flex;
+        flex-direction: column;
+        &-child {
+            flex: 1; /* Tự động mở rộng để chia đều không gian */
+            background-color: lightblue; /* Màu nền cho các div con */
+            border: 1px solid blue; /* Đường viền cho các div con */
+        }
+    }
+    &-img{
+        width: 350px;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+}

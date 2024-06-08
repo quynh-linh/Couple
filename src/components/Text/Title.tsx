@@ -12,7 +12,7 @@ export default  function Title(props: TitleProps) {
             <span><FavoriteIcon/></span>
             <span><p className="mx-4">04</p></span>
             <span><FavoriteIcon/></span>
-            <span><p>2024</p></span>
+            <span><p>2023</p></span>
         </div>
     )
 }
