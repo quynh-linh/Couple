@@ -1,6 +1,6 @@
 .profile{
     position: relative;
-    position: relative;
+    font-family: var(--font-Italic);
     width: 100%;
     display: flex;
     align-items: center;
@@ -9,9 +9,24 @@
         display: flex;
         flex-direction: column;
         &-child {
-            flex: 1; /* Tự động mở rộng để chia đều không gian */
-            background-color: lightblue; /* Màu nền cho các div con */
-            border: 1px solid blue; /* Đường viền cho các div con */
+            width: 250px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &-content{
+                width: 100%;
+                background-color: white;
+                border: 1px solid black;
+                border-radius: 5px;
+                box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+            &-contentSelected{
+                background: #a3a3a3 !important;
+            }
         }
     }
     &-img{
@@ -19,6 +34,6 @@
         height: 350px;
         object-fit: cover;
         border-radius: 50%;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        box-shadow: rgba(240, 10, 10, 0.4) 0px 2px 4px, rgba(240, 10, 10, 0.3) 0px 7px 13px -3px, rgba(240, 10, 10, 0.2) 0px -3px 0px inset;
     }
 }

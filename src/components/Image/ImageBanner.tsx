@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import Image from "next/image";
 import styles from "../../components/Home/home.module.scss";
 import { RefObject, useState } from "react";
+
 interface ImageProps{
     refBanner: RefObject<HTMLDivElement>;
     src: any,
@@ -22,7 +23,7 @@ export default function ImageBanner({refBanner,src,isViewPort,id}:ImageProps) {
         setClassNameZoom("animate__zoomOutUp")
         setTimeout(() => {
             setIsHovered(true);
-        }, 500);
+        }, 300);
     };
     
     return (
@@ -31,7 +32,7 @@ export default function ImageBanner({refBanner,src,isViewPort,id}:ImageProps) {
             ref={refBanner}
         >
             <a 
-                href={id ==="BannerLeft" ? "/profiles/" : ""}
+                href={id ==="BannerLeft" ? "/profiles/men" : "/profiles/women"}
                 style={{position: "relative"}}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}

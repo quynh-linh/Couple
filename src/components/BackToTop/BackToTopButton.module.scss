@@ -1,10 +1,10 @@
-.back-to-top{
+.backToTop {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: white;
     color: black;
-    border: 1px solid black;
+    border: 2px solid black;
     width: 40px;
     height: 40px;
     text-align: center;
@@ -12,17 +12,31 @@
     position: fixed;
     bottom: 30px;
     right: 30px;
-    transition: background-color .3s, 
-      opacity .5s, visibility .5s;
+    transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
     opacity: 1;
     visibility: visible;
     z-index: 1000;
-    &:hover {
-        cursor: pointer;
-        background-color: black;
-        color: white;
-    }
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     &:active {
         background-color: #555;
+    }
+
+    &-controls {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        right: 0;
+        &-parent {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid black;
+            border-radius: 50%;
+        }
     }
 }
