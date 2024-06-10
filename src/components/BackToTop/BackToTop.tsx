@@ -6,7 +6,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CloseIcon from '@mui/icons-material/Close';
-import { removeHeart } from '@/redux/features/heartSlice';
+import { initHearts, removeHearts } from '@/redux/features/heartSlice';
 import { useAppDispatch, useAppSelector } from '@/libs/hook';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
@@ -15,7 +15,8 @@ const cx = classNames.bind(styles);
 const BackToTopButton: React.FC = () => {
     const [showButton, setShowButton] = useState<boolean>(false);
     const [showControls, setShowControls] = useState<boolean>(false);
-    const [showControlsHearts, setShowControlsHearts] = useState<boolean>(false);
+    const isEnable = Boolean(localStorage.getItem('enable'));
+    const [showControlsHearts, setShowControlsHearts] = useState<boolean>(isEnable);
     const dispatch = useAppDispatch();
     const selector = useAppSelector((state) => state.heart);
     const handleClickShowControl = () => {
@@ -45,9 +46,12 @@ const BackToTopButton: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(removeHeart({ status: showControlsHearts }));
+        if(showControlsHearts){
+            dispatch(initHearts({ status: showControlsHearts }));
+        } else {
+            dispatch(removeHearts({ status: showControlsHearts }));
+        }
     }, [showControlsHearts]);
-
     return (
         <>
             <a className={cx('backToTop')}>
@@ -56,7 +60,12 @@ const BackToTopButton: React.FC = () => {
                 </div>
                 {showControls ? (
                     <div
-                        className={cx('backToTop-controls', 'text-4xl','animate__animated',showControls ? 'animate__bounceInUp' : 'animate__bounceInDown')}
+                        className={cx(
+                            'backToTop-controls',
+                            'text-4xl',
+                            'animate__animated',
+                            showControls ? 'animate__bounceInUp' : 'animate__bounceInDown',
+                        )}
                         style={{ top: !showButton ? '-50px' : '-100px' }}
                     >
                         <Tippy content="Có thể tắt/bật hiển thị trái tim trong website">
@@ -65,7 +74,7 @@ const BackToTopButton: React.FC = () => {
                                 className={cx(
                                     'backToTop-controls-parent',
                                     ' hover:cursor-pointer',
-                                    selector.status ? '' : 'text-red-700',
+                                    selector.status ? 'text-red-700' : '',
                                 )}
                             >
                                 <FavoriteIcon />

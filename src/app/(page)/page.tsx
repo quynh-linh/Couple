@@ -10,7 +10,7 @@ import useIsInViewport from "@/hooks/useIsInViewport";
 import { updateElementClass } from "@/utils/updateElementClass";
 import Title from "@/components/Text/Title";
 import ImageBanner from "@/components/Image/ImageBanner";
-import Albums from "@/components/Home/HomeAlbums/Albums";
+import Albums from "@/components/Home/HomeAlbums/HomeAlbums";
 const cx = classNames.bind(styles);
 export default function Home() {
      const [timeDifference, setTimeDifference] = useState(calculateTimeDifference());

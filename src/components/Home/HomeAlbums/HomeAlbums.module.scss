@@ -1,0 +1,121 @@
+// Định nghĩa các biến
+$primary-font: sans-serif;
+$font-title: var(--font-style);
+$font-italic: var(--font-Italic);
+$font-size-title: 2.5rem;
+$font-weight-title: 600;
+$border-color-default: black;
+$border-color-hover: red;
+$box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+$transition-duration: 0.25s;
+$transition-ease: ease-in-out;
+$padding-default: 20px;
+$margin-default: 1.5rem;
+$border-radius: 5px;
+
+.albums {
+    margin-left: 250px;
+    padding: $padding-default;
+}
+
+.grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: $primary-font;
+
+    &-title {
+        font-family: $font-title;
+        font-size: $font-size-title;
+        font-weight: $font-weight-title;
+        background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #444444, transparent, transparent);
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+
+    &-container {
+        columns: 4 200px;
+        column-gap: $margin-default;
+        width: 90%;
+        margin: 0 auto;
+
+        div {
+            width: 150px;
+            margin: 0 $margin-default $margin-default 0;
+            display: inline-block;
+            width: 100%;
+            border: solid 2px $border-color-default;
+            padding: 5px;
+            box-shadow: $box-shadow;
+            border-radius: $border-radius;
+            transition: all $transition-duration $transition-ease;
+
+            &:hover {
+                border-color: $border-color-hover;
+
+                img {
+                    filter: grayscale(0);
+                }
+            }
+
+            img {
+                width: 100%;
+                filter: grayscale(100%);
+                border-radius: $border-radius;
+                transition: all $transition-duration $transition-ease;
+            }
+
+            p {
+                margin: 5px 0;
+                padding: 0;
+                text-align: center;
+                font-style: italic;
+            }
+        }
+    }
+
+    &-footer {
+        p {
+            font-family: $font-italic;
+            padding: 5px 15px;
+            background: none;
+            border: none;
+            position: relative;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 3px;
+            cursor: pointer;
+
+            &:after,
+            &:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                border: 2px solid #000;
+                transition: transform 0.2s;
+            }
+
+            &:after {
+                transform: translate(3px, 3px);
+            }
+
+            &:before {
+                transform: translate(-3px, -3px);
+            }
+
+            &:hover {
+                background-color: black;
+                color: white;
+
+                &:after,
+                &:before {
+                    transform: translate(0);
+                }
+            }
+        }
+    }
+}

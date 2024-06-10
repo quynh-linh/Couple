@@ -3,8 +3,6 @@
 @tailwind utilities;
 @import 'animate.css';
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css');
-@import "~slick-carousel/slick/slick.css"; 
-@import "~slick-carousel/slick/slick-theme.css";
 @import url('https://fonts.googleapis.com/css2?family=Sedan+SC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Major+Mono+Display&family=Sedan+SC&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Major+Mono+Display&family=Sedan+SC&family=Sevillana&display=swap');
