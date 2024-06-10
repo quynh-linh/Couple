@@ -56,7 +56,7 @@ const BackToTopButton: React.FC = () => {
                 </div>
                 {showControls ? (
                     <div
-                        className={cx('backToTop-controls', 'text-4xl')}
+                        className={cx('backToTop-controls', 'text-4xl','animate__animated',showControls ? 'animate__bounceInUp' : 'animate__bounceInDown')}
                         style={{ top: !showButton ? '-50px' : '-100px' }}
                     >
                         <Tippy content="Có thể tắt/bật hiển thị trái tim trong website">

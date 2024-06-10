@@ -1,0 +1,19 @@
+.sidebar{
+    position: fixed;
+    left: 0;
+    top: 71px;
+    width: 250px;
+    background: white;
+    height: 100%;
+    border-right: 1px solid #ccc;
+    &-span{
+        width: 20%;
+        color: #001D35;
+    }
+    &-p{
+        width: 80%;
+        font-size: 15px;
+        font-weight: 500;
+        color: #001D35;
+    }
+}

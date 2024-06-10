@@ -9,12 +9,8 @@ import { useEffect } from 'react';
 
 export default function ComponentConnectLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
-
     const selector = useAppSelector((state) => state.heart);
 
-    useEffect(() => {
-        console.log(selector.status);
-    }, [selector.status]);
     return (
         <div className=" w-full h-full">
             {pathname === '/albums' ? (
