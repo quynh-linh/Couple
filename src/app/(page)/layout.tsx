@@ -12,13 +12,16 @@ export default function ComponentConnectLayout({ children }: { children: React.R
     const pathname = usePathname();
     const selector = useAppSelector((state) => state.heart);
     const dispatch = useAppDispatch();
-    const isRemoveHearts = localStorage.getItem('isRemoved');
 
     useEffect(() => {
-        if (isRemoveHearts === null && isRemoveHearts !== 'true') {
-            dispatch(initHearts({ status: true }));
+        if (typeof window !== 'undefined') {
+            // Sử dụng localStorage ở đây
+            const isRemoveHearts = localStorage.getItem('isRemoved');
+            if (isRemoveHearts === null && isRemoveHearts !== 'true') {
+                dispatch(initHearts({ status: true }));
+            }
         }
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className=" w-full h-full">

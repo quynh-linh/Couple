@@ -15,7 +15,7 @@ const cx = classNames.bind(styles);
 const BackToTopButton: React.FC = () => {
     const [showButton, setShowButton] = useState<boolean>(false);
     const [showControls, setShowControls] = useState<boolean>(false);
-    const isEnable = Boolean(localStorage.getItem('enable'));
+    const isEnable = typeof window !== 'undefined' && Boolean(localStorage.getItem('enable'));
     const [showControlsHearts, setShowControlsHearts] = useState<boolean>(isEnable);
     const dispatch = useAppDispatch();
     const selector = useAppSelector((state) => state.heart);
@@ -46,12 +46,12 @@ const BackToTopButton: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        if(showControlsHearts){
+        if (showControlsHearts) {
             dispatch(initHearts({ status: showControlsHearts }));
         } else {
             dispatch(removeHearts({ status: showControlsHearts }));
         }
-    }, [showControlsHearts]);
+    }, [showControlsHearts, dispatch]);
     return (
         <>
             <a className={cx('backToTop')}>
