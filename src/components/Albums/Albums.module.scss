@@ -1,4 +1,12 @@
 .albums{
     margin-left: 250px;
+    margin-top: 71px;
     padding: 20px;
+    height: 100%;
+    background-color: white;
+    &-title{
+        font-size: 17px;
+        font-weight: 600;
+        font-family: var(--font-Italic);
+    }
 }

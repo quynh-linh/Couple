@@ -12,10 +12,14 @@
     --font-Italic: 'Sevillana', cursive;
     --bg-color: #f8f7f5;
 }
+html {
+    height: 100%;
+}
 
 body {
     background-color: var(--bg-color);
     overflow-x: hidden;
+    height: 100%;
 }
 .heart {
     position: fixed;

@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './HomeAlbums.module.scss';
 import { images } from '@/utils/DataAlbums';
-import Image from 'next/image';
 interface AlbumsProps {}
 const cx = classNames.bind(styles);
 export default function Albums(params: AlbumsProps) {

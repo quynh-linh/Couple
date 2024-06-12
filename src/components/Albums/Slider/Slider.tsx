@@ -1,77 +1,62 @@
-'use client';
-import React, { MutableRefObject } from 'react';
+import React, { useState } from 'react';
 import './Slider.scss';
-import { useKeenSlider, KeenSliderPlugin, KeenSliderInstance } from 'keen-slider/react';
+import { useKeenSlider, KeenSliderPlugin } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
+import SliderItem from './SliderItem';
 
+interface SlideMultipleItemsProps {
+    listData: any[];
+}
 
-function ThumbnailPlugin(mainRef: MutableRefObject<KeenSliderInstance | null>): KeenSliderPlugin {
-    return (slider) => {
-        function removeActive() {
-            slider.slides.forEach((slide) => {
-                slide.classList.remove('active');
-            });
-        }
-        function addActive(idx: number) {
-            slider.slides[idx].classList.add('active');
-        }
+export default function SlideMultipleItems({ listData }: SlideMultipleItemsProps) {
+    const [position, setPosition] = useState(0);
+    const carousel: KeenSliderPlugin = (slider) => {
+        const z = 300;
 
-        function addClickEvents() {
-            slider.slides.forEach((slide, idx) => {
-                slide.addEventListener('click', () => {
-                    if (mainRef.current) mainRef.current.moveToIdx(idx);
-                });
-            });
+        function rotate() {
+            if (slider.track && slider.track.details) {
+                const deg = 360 * slider.track.details.progress;
+                slider.container.style.transform = `translateZ(-${z}px) rotateY(${-deg}deg)`;
+            }
         }
 
         slider.on('created', () => {
-            if (!mainRef.current) return;
-            addActive(slider.track.details.rel);
-            addClickEvents();
-            mainRef.current.on('animationStarted', (main) => {
-                removeActive();
-                const next = main.animator.targetIdx || 0;
-                addActive(main.track.absToRel(next));
-                slider.moveToIdx(Math.min(slider.track.details.maxIdx, next));
+            if (!slider.track) return;
+            const deg = 360 / slider.slides.length;
+            slider.slides.forEach((element, idx) => {
+                element.style.transform = `rotateY(${deg * idx}deg) translateZ(${z}px)`;
             });
+            rotate();
+        });
+
+        slider.on('detailsChanged', () => {
+            if (slider.track && slider.track.details) {
+                setPosition(slider.track.details.rel);
+            }
+            rotate();
         });
     };
-}
-
-export default function SlideMultipleItems() {
-    const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-        initial: 0,
-    });
-    const [thumbnailRef] = useKeenSlider<HTMLDivElement>(
+    const [sliderRef] = useKeenSlider<HTMLDivElement>(
         {
-            initial: 0,
-            slides: {
-                perView: 4,
-                spacing: 10,
-            },
+            loop: true,
+            selector: '.carousel__cell',
+            renderMode: 'custom',
+            mode: 'free-snap',
         },
-        [ThumbnailPlugin(instanceRef)],
+        [carousel],
     );
 
     return (
-        <>
-            <div ref={sliderRef} className="keen-slider">
-                <div className="keen-slider__slide number-slide1">1</div>
-                <div className="keen-slider__slide number-slide2">2</div>
-                <div className="keen-slider__slide number-slide3">3</div>
-                <div className="keen-slider__slide number-slide4">4</div>
-                <div className="keen-slider__slide number-slide5">5</div>
-                <div className="keen-slider__slide number-slide6">6</div>
+        listData.length > 0 && (
+            <div className="flex items-center justify-center">
+                <div className="scene">
+                    <div className="carousel keen-slider" ref={sliderRef}>
+                        {listData.map((item: any, index: number) => {
+                            return <SliderItem position={position} key={item.public_id} item={item} index={index} />;
+                        })}
+                    </div>
+                </div>
             </div>
-
-            <div ref={thumbnailRef} className="keen-slider thumbnail">
-                <div className="keen-slider__slide number-slide1">1</div>
-                <div className="keen-slider__slide number-slide2">2</div>
-                <div className="keen-slider__slide number-slide3">3</div>
-                <div className="keen-slider__slide number-slide4">4</div>
-                <div className="keen-slider__slide number-slide5">5</div>
-                <div className="keen-slider__slide number-slide6">6</div>
-            </div>
-        </>
+        )
     );
 }

@@ -1,7 +1,7 @@
-import bannerCouple from "@/assets/images/bannerCouple.jpg";
-import bannerCoupleLeft from "@/assets/images/bannerCoupleLeft.jpg";
-import bannerCoupleRight from "@/assets/images/bannerCoupleRight.jpg";
-import men from "@/assets/images/men.jpg";
+import bannerCouple from "../../../public/assets/images/bannerCouple.jpg";
+import bannerCoupleLeft from "../../../public/assets/images/bannerCoupleLeft.jpg";
+import bannerCoupleRight from "../../../public/assets/images/bannerCoupleRight.jpg";
+import men from "../../../public/assets/images/men.jpg";
 const images = {
     bannerCouple:bannerCouple,
     bannerCoupleLeft:bannerCoupleLeft,

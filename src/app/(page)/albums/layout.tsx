@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function AlbumsLayout({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <Header/>
+            <Header position='Sidebar'/>
             <Sidebar/>
             {children}
         </>
