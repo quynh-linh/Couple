@@ -100,7 +100,9 @@ export default function Home() {
                 <div className="w-2/4 flex items-center justify-center my-4">
                     <video width={300} height={500} autoPlay muted loop>
                         <source
-                            src={`${process.env.NEXT_PUBLIC_BASE_URL}/assets/videos/1686372287426.mp4`}
+                            src={
+                                'https://firebasestorage.googleapis.com/v0/b/couple-85135.appspot.com/o/Albums%2F1686372287426.mp4?alt=media&token=f01df81a-8e50-431a-b2a3-fdd1539dd459'
+                            }
                             type="video/mp4"
                         />
                         Your browser does not support the video tag.

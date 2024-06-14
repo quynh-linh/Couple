@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import heartSlice from '../features/heartSlice';
-
+import cloudinarySlice from '../features/cloudinarySlice';
 export const store = () => {
   return configureStore({
-    reducer: {
-      heart: heartSlice,
-    },
+      reducer: {
+          heart: heartSlice,
+          cloud: cloudinarySlice,
+      },
   });
 };
 

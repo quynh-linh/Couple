@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các hình ảnh tự động xuống dòng */
+    gap: 10px; /* Khoảng cách giữa các hình ảnh */
+    max-width: 100%; /* Giới hạn chiều rộng của container */
+    &-img {
+        width: 200px;
+        height: 300px;
+        object-fit: cover;
+    }
+}

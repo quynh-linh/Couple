@@ -33,11 +33,11 @@ const PStyles: React.CSSProperties = {
 function SliderItem({ item, index, position }: SliderItemProps) {
     return (
         <div style={DivStyles(position, index)} className={`carousel__cell number-slide${index + 1} showItem`}>
-            {item.resource_type === 'image' ? (
-                <img style={ImageStyles} src={item.secure_url} alt={item.display_name} />
+            {item.type === 'image' ? (
+                <img style={ImageStyles} src={item.url} alt={item.name} />
             ) : (
                 <video style={ImageStyles} autoPlay muted loop>
-                    <source src={item.secure_url} type="video/mp4" />
+                    <source src={item.url} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             )}
@@ -48,7 +48,7 @@ function SliderItem({ item, index, position }: SliderItemProps) {
                     position === index ? 'animate__animated animate__wobble' : 'hidden'
                 }`}
             >
-                {item.display_name}
+                {item.momentName}
             </p>
         </div>
     );

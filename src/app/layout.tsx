@@ -1,45 +1,43 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-const inter = Inter({ subsets: ["latin"] });
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+const inter = Inter({ subsets: ['latin'] });
 import Favicon from '../../public/favicon.ico';
-import ReduxProvider from "@/redux/provider";
+import ReduxProvider from '@/redux/provider';
+import { usePathname } from 'next/navigation';
 export const metadata: Metadata = {
-  // metadataBase: new URL(`${process.env.NEXTAUTH_URL}`),
-  title: {
-      default: 'Linh & Yen',
-      template: `%s | Linh & Yen`,
-  },
-  description:
-      'Linh & Yen',
-  icons: [{ rel: 'icon', url: Favicon.src }],
-  robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-          index: true,
-          follow: true,
-          'max-video-preview': -1,
-          'max-image-preview': 'large',
-          'max-snippet': -1,
-      },
-  },
-  keywords: 'Linh & Yen',
-  applicationName: 'Linh & Yen',
+    // metadataBase: new URL(`${process.env.NEXTAUTH_URL}`),
+    title: {
+        default: 'Linh & Yen',
+        template: `%s | Linh & Yen`,
+    },
+    description: 'Linh & Yen',
+    icons: [{ rel: 'icon', url: Favicon.src }],
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    },
+    keywords: 'Linh & Yen',
+    applicationName: 'Linh & Yen',
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ReduxProvider>
-          {children}
-        </ReduxProvider>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <body className={inter.className}>
+                <ReduxProvider>{children}</ReduxProvider>
+            </body>
+        </html>
+    );
 }

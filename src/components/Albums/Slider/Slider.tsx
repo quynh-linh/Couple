@@ -52,7 +52,7 @@ export default function SlideMultipleItems({ listData }: SlideMultipleItemsProps
                 <div className="scene">
                     <div className="carousel keen-slider" ref={sliderRef}>
                         {listData.map((item: any, index: number) => {
-                            return <SliderItem position={position} key={item.public_id} item={item} index={index} />;
+                            return <SliderItem position={position} key={index} item={item} index={index} />;
                         })}
                     </div>
                 </div>

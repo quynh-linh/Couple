@@ -1,0 +1,55 @@
+.appContainer {
+    display: flex;
+    height: 100%;
+    position: relative;
+    margin-top: 30px;
+}
+
+// .leftPanel {
+//     flex: 1;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+.rightPanel {
+    position: fixed;
+    right: 0;
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+    padding-top: 10px;
+    padding-right: 10px;
+    top: 71px;
+}
+
+.yearSection {
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.yearTitle {
+    text-align: start;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.monthItem {
+    flex: 1;
+    margin: 5px 0;
+    cursor: pointer;
+    color: #5d5d5d;
+    font-size: 7px !important;
+}
+
+.monthItem:hover {
+    background-color: #666;
+}
+
+.content {
+    padding: 20px;
+    background-color: rgb(193, 27, 27);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

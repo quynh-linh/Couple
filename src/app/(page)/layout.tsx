@@ -22,7 +22,6 @@ export default function ComponentConnectLayout({ children }: { children: React.R
             }
         }
     }, [dispatch]);
-
     return (
         <div className=" w-full h-full">
             {pathname === '/albums' ? (

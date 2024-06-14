@@ -8,7 +8,6 @@ import images from '@/assets/images';
 import { dataProfileLeft, dataProfileRight } from '@/mock/dataProfile';
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 const cx = classNames.bind(styles);
 
 interface ArcherProfilesProps {
@@ -105,7 +104,9 @@ export default function ArcherProfiles({ updateParams }: ArcherProfilesProps) {
                                 ) : (
                                     <video className={cx('profile-img')} width={300} height={500} autoPlay muted loop>
                                         <source
-                                            src={`${process.env.NEXT_PUBLIC_BASE_URL}/assets/videos/Women.mp4`}
+                                            src={
+                                                'https://firebasestorage.googleapis.com/v0/b/couple-85135.appspot.com/o/Albums%2FWomen.mp4?alt=media&token=90a6a1e2-3706-4644-a45f-81888548135d'
+                                            }
                                             type="video/mp4"
                                         />
                                         Your browser does not support the video tag.
