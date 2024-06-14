@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import 'react-vertical-timeline-component/style.min.css';
 import styles from './Timeline.module.scss';
 import classNames from 'classnames/bind';
 import Tippy from '@tippyjs/react';
