@@ -2,14 +2,11 @@
     margin-left: 250px;
     margin-top: 71px;
     height: 100%;
-    background-color: white;
-    overflow-y: scroll;
-    margin-right: -17px;
-    padding-right: 17px;
+    font-family: var(--font-style);
     &-title {
         font-size: 17px;
-        font-weight: 600;
-        font-family: var(--font-Italic);
+        font-weight: 500;
+        font-family: var(--font-style);
     }
     &-outstanding {
         padding: 20px;

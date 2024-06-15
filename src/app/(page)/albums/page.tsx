@@ -28,24 +28,17 @@ export default function Albums(params: AlbumsProps) {
 
         getData(); // Gọi hàm getData để thực thi
 
-        // Thêm overflow: hidden vào thẻ body khi component được mount
-        document.body.style.overflow = 'hidden';
-
-        // Xóa overflow: hidden khi component bị unmount
-        return () => {
-            document.body.style.overflow = 'auto';
-        };
-    }, []); // Chạy một lần khi component được mount
+    }, []); 
 
     useEffect(() => {
         dispatch(findAllListImageByYears({ years: 2023 }));
         dispatch(findAllListImageByYears({ years: 2024 }));
-    }, [dispatch]); // Chạy một lần khi component được mount và dispatch được định nghĩa
-
+    }, [dispatch]); 
+    
     return (
         <div id='albums-scroll' className={cx('albums')}>
-            <div className={cx('', 'albums-outstanding')}>
-                <p className={cx('albums-title')}>Những khoảng khắc nổi bật</p>
+            <div className={cx('albums-outstanding')}>
+                <h1 className={cx('albums-title')}>Những khoảng khắc nổi bật</h1>
                 <div className={cx('mt-4', '')}>
                     <SlideMultipleItems listData={listDataOutStanding} />
                 </div>

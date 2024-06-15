@@ -15,26 +15,26 @@ export default function ComponentConnectLayout({ children }: { children: React.R
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            // Sử dụng localStorage ở đây
             const isRemoveHearts = localStorage.getItem('isRemoved');
             if (isRemoveHearts === null && isRemoveHearts !== 'true') {
                 dispatch(initHearts({ status: true }));
             }
         }
     }, [dispatch]);
-    return (
-        <div className=" w-full h-full">
-            {pathname === '/albums' ? (
-                children
-            ) : (
-                <>
-                    <Header />
-                    {children}
-                    {selector.status ? <HeartCreator /> : ''}
-                    <BackToTopButton />
-                    <Footer />
-                </>
-            )}
-        </div>
+
+    useEffect(() => {
+        if (pathname === '/albums') document.body.style.backgroundColor = 'white';
+    }, []);
+
+    return pathname === '/albums' ? (
+        children
+    ) : (
+        <>
+            <Header />
+            {children}
+            {selector.status ? <HeartCreator /> : ''}
+            <BackToTopButton />
+            <Footer />
+        </>
     );
 }

@@ -1,11 +1,29 @@
-.container {
-    display: flex;
-    flex-wrap: wrap; /* Cho phép các hình ảnh tự động xuống dòng */
-    gap: 10px; /* Khoảng cách giữa các hình ảnh */
-    max-width: 100%; /* Giới hạn chiều rộng của container */
-    &-img {
-        width: 200px;
-        height: 300px;
-        object-fit: cover;
+.wrapper {
+    padding: 15px;
+    &-container {
+        margin-top: 15px;
+        display: flex;
+        flex-wrap: wrap; /* Cho phép các hình ảnh tự động xuống dòng */
+        gap: 15px; /* Khoảng cách giữa các hình ảnh */
+        max-width: 100%; /* Giới hạn chiều rộng của container */
+        &-img {
+            width: 150px;
+            height: 250px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+        &-video {
+            &-icon {
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 10px;
+                color: white;
+                display: flex;
+                align-items: center;
+                font-size: 15px;
+                font-weight: 600;
+            }
+        }
     }
 }

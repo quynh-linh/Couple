@@ -8,6 +8,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 import { useAppSelector } from '@/libs/hook';
 import { months } from '@/libs/data';
 import TimeLineItem from './TimeLineItem/TimelineItem';
+import { convertMonths } from '@/libs/datetime';
 
 interface ImageInfo {
     name: string;
@@ -33,6 +34,11 @@ const Timeline: React.FC = () => {
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const [rightPanelHeight, setRightPanelHeight] = useState<number>(0);
     const selector = useAppSelector((state) => state.cloud);
+    const [itemMonthClick, setItemMonthClick] = useState<{ month: any | null; year: string | null }>({
+        month: null,
+        year: null,
+    });
+    const [viewPort,setViewPort] = useState<string>("");
 
     const handleScroll = () => {
         setIsHover(false);
@@ -56,6 +62,17 @@ const Timeline: React.FC = () => {
         const month = months.find((m) => m.en === monthEn);
         return month ? month.vi : monthEn;
     };
+    const handleMonthItemClick = (month: any, year: string) => {
+        setItemMonthClick((prevState) => ({
+            ...prevState,
+            month: month,
+            year: year,
+        }));
+    };
+
+    const handleViewPort = (e: string) => {
+        setViewPort(e);
+    }; 
 
     useEffect(() => {
         const uniqueYears = new Map<string, { month: string; images: ImageInfo[] }[]>();
@@ -83,17 +100,17 @@ const Timeline: React.FC = () => {
     }, [selector.dataYear2023.length, selector.dataYear2024.length]);
 
     useEffect(() => {
-        const albumsScroll = document.getElementById('albums-scroll');
-        if (albumsScroll) {
-            setRightPanelHeight(albumsScroll.clientHeight);
-            albumsScroll.addEventListener('scroll', handleScroll);
-            return () => {
-                albumsScroll.removeEventListener('scroll', handleScroll);
-                if (timeoutRef.current) {
-                    clearTimeout(timeoutRef.current);
-                }
-            };
+        const albums = document.getElementById('albums-scroll');
+        if (albums) {
+            setRightPanelHeight(albums.clientHeight);
         }
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        };
     }, []);
 
     return (
@@ -102,10 +119,19 @@ const Timeline: React.FC = () => {
                 {years.length > 0 &&
                     years.map((item: YearData, index: number) => (
                         <div key={index}>
+                            <div>
+                                <h1 className={cx('appContainer-titleYears')}>{item.year}</h1>
+                            </div>
                             {item.months.map((month: Data, monthIndex: number) => {
                                 return (
                                     <div key={monthIndex}>
-                                        <TimeLineItem arrItem={month.images} />
+                                        <TimeLineItem
+                                            viewPort={(e: string) => handleViewPort(e)}
+                                            onClick={itemMonthClick}
+                                            month={month}
+                                            year={item}
+                                            arrItem={month.images}
+                                        />
                                     </div>
                                 );
                             })}
@@ -123,8 +149,15 @@ const Timeline: React.FC = () => {
                                 <div className={cx('yearTitle')}>{item.year}</div>
                                 <div className="grid justify-end h-full">
                                     {item.months.map((month: any, monthIndex: number) => (
-                                        <Tippy key={monthIndex} content={month.month + ' ' + item.year}>
-                                            <CircleIcon className={cx('monthItem')} />
+                                        <Tippy
+                                            // placement={'left'}
+                                            // visible={viewPort === convertMonths(month.month) + ' ' + item.year ? true : false}
+                                            key={monthIndex}
+                                            content={month.month + ' ' + item.year}
+                                        >
+                                            <span className='' onClick={() => handleMonthItemClick(month, item.year)}>
+                                                <CircleIcon className={cx('monthItem')} />
+                                            </span>
                                         </Tippy>
                                     ))}
                                 </div>
