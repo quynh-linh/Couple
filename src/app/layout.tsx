@@ -4,7 +4,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 import Favicon from '../../public/favicon.ico';
 import ReduxProvider from '@/redux/provider';
-import { usePathname } from 'next/navigation';
+
 export const metadata: Metadata = {
     // metadataBase: new URL(`${process.env.NEXTAUTH_URL}`),
     title: {

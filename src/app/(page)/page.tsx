@@ -11,6 +11,7 @@ import { updateElementClass } from '@/utils/updateElementClass';
 import Title from '@/components/Text/Title';
 import ImageBanner from '@/components/Image/ImageBanner';
 import Albums from '@/components/Home/HomeAlbums/HomeAlbums';
+import ModernTimeline from '@/components/ModernTimeline/ModernTimeline';
 const cx = classNames.bind(styles);
 export default function Home() {
     const [timeDifference, setTimeDifference] = useState(calculateTimeDifference());
@@ -110,6 +111,7 @@ export default function Home() {
                 </div>
             </div>
             <Albums />
+            <ModernTimeline />
         </div>
     );
 }

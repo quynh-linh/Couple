@@ -24,7 +24,7 @@ export default function ComponentConnectLayout({ children }: { children: React.R
 
     useEffect(() => {
         if (pathname === '/albums') document.body.style.backgroundColor = 'white';
-    }, []);
+    }, [pathname]);
 
     return pathname === '/albums' ? (
         children

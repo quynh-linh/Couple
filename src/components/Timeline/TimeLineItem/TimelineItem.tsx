@@ -17,35 +17,37 @@ const cx = classNames.bind(styles);
 export default function TimeLineItem({ onClick, arrItem, month, year, viewPort }: TimeLineItemProps) {
     const monthRef = useRef<HTMLHeadingElement>(null);
     const isInViewport = useIsInViewport(monthRef);
-    const videoRef = useRef<HTMLVideoElement>(null);
-    const [duration, setDuration] = useState<number>(0);
-    const [formattedDuration, setFormattedDuration] = useState<string>('0:00');
+    const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+    const [videoDurations, setVideoDurations] = useState<number[]>([]);
 
-    const formatTime = (seconds: number): string => {
-        const mins = Math.floor(seconds / 60);
+    const formatDuration = (seconds: number) => {
+        const minutes = Math.floor(seconds / 60);
         const secs = Math.floor(seconds % 60);
-        return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        return `${minutes < 10 ? '0' : ''}${minutes}:${secs < 10 ? '0' : ''}${secs}`;
     };
 
-    const handleLoadedMetadata = () => {
-        if (videoRef.current) {
-            const durationInSeconds = Math.floor(videoRef.current.duration);
-            setDuration(durationInSeconds);
-            setFormattedDuration(formatTime(durationInSeconds));
+    const handleLoadedMetadata = (index: number) => {
+        if (videoRefs.current[index]) {
+            const duration = videoRefs.current[index]?.duration || 0;
+            setVideoDurations((prevDurations) => {
+                const newDurations = [...prevDurations];
+                newDurations[index] = duration;
+                return newDurations;
+            });
         }
     };
-    const handleMouseEnter = () => {
-        if (videoRef.current) {
-            videoRef.current.play().catch((error) => console.log('Error playing video:', error));
+    const handleMouseEnter = (index: number) => {
+        if (videoRefs.current[index]) {
+            videoRefs.current[index]?.play();
         }
     };
 
-    const handleMouseLeave = () => {
-        if (videoRef.current) {
-            videoRef.current.pause();
-            videoRef.current.currentTime = 0;
+    const handleMouseLeave = (index: number) => {
+        if (videoRefs.current[index]) {
+            videoRefs.current[index]?.pause();
         }
     };
+
     useEffect(() => {
         if (onClick.month?.month && onClick.year) {
             const item = convertMonths(onClick.month?.month) + ' ' + onClick.year;
@@ -63,10 +65,14 @@ export default function TimeLineItem({ onClick, arrItem, month, year, viewPort }
         } else {
             viewPort('');
         }
-    }, [isInViewport]);
+    }, [isInViewport, viewPort]);
+
+    useEffect(() => {
+        videoRefs.current = videoRefs.current.slice(0, arrItem.length);
+    }, [arrItem.length]);
     return (
         <div id={`${convertMonths(month.month) + ' ' + year.year}`} ref={monthRef} className={cx('wrapper')}>
-            <h1 className={`text-xl font-medium`}>{convertMonths(month.month)}</h1>
+            <h1 className="text-xl font-medium">{convertMonths(month.month)}</h1>
             <div className={cx('wrapper-container')}>
                 {arrItem.length > 0 &&
                     arrItem.map((item, index) => (
@@ -77,10 +83,13 @@ export default function TimeLineItem({ onClick, arrItem, month, year, viewPort }
                             ) : (
                                 <div className="relative">
                                     <video
-                                        ref={videoRef}
-                                        onMouseEnter={handleMouseEnter}
-                                        onMouseLeave={handleMouseLeave}
-                                        onLoadedMetadata={handleLoadedMetadata}
+                                        ref={(el) => {
+                                            videoRefs.current[index] = el;
+                                        }}
+                                        id={item.name}
+                                        onMouseEnter={() => handleMouseEnter(index)}
+                                        onMouseLeave={() => handleMouseLeave(index)}
+                                        onLoadedMetadata={() => handleLoadedMetadata(index)}
                                         className={cx('wrapper-container-img', 'wrapper-container-video')}
                                         muted
                                         loop
@@ -89,7 +98,7 @@ export default function TimeLineItem({ onClick, arrItem, month, year, viewPort }
                                         Your browser does not support the video tag.
                                     </video>
                                     <div className={cx('wrapper-container-video-icon')}>
-                                        <p className='mr-2'>{formattedDuration}</p>
+                                        <p className="mr-2">{formatDuration(videoDurations[index] || 0)}</p>
                                         <PlayCircleOutlineIcon />
                                     </div>
                                 </div>

@@ -1,3 +1,4 @@
+import TextComponent from '@/components/ModernTimeline/TextComponent';
 const months = [
     { vi: 'thg 1', en: 'January' },
     { vi: 'thg 2', en: 'February' },
@@ -12,4 +13,5 @@ const months = [
     { vi: 'thg 11', en: 'November' },
     { vi: 'thg 12', en: 'December' },
 ];
-export {months}
+
+export { months};
