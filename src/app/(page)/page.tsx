@@ -7,7 +7,6 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { calculateTimeDifference } from '@/utils/calculateTimeDifference';
 import useIsInViewport from '@/hooks/useIsInViewport';
-import { updateElementClass } from '@/utils/updateElementClass';
 import Title from '@/components/Text/Title';
 import ImageBanner from '@/components/Image/ImageBanner';
 import Albums from '@/components/Home/HomeAlbums/HomeAlbums';
@@ -15,10 +14,7 @@ import ModernTimeline from '@/components/ModernTimeline/ModernTimeline';
 const cx = classNames.bind(styles);
 export default function Home() {
     const [timeDifference, setTimeDifference] = useState(calculateTimeDifference());
-    const refBannerLeft = useRef<HTMLDivElement | null>(null);
-    const refBannerRight = useRef<HTMLDivElement | null>(null);
-    const isInViewportBannerLeft = useIsInViewport(refBannerLeft);
-    const isInViewportBannerRight = useIsInViewport(refBannerRight);
+
     useEffect(() => {
         const interval = setInterval(() => {
             setTimeDifference(calculateTimeDifference());
@@ -27,29 +23,12 @@ export default function Home() {
         return () => clearInterval(interval);
     }, []);
 
-    useEffect(() => {
-        updateElementClass(
-            refBannerLeft.current,
-            isInViewportBannerLeft,
-            'animate__fadeInTopLeft',
-            'animate__fadeOutTopLeft',
-        );
-        updateElementClass(
-            refBannerRight.current,
-            isInViewportBannerRight,
-            'animate__fadeInTopRight',
-            'animate__fadeOutTopRight',
-        );
-    }, [isInViewportBannerLeft, isInViewportBannerRight]);
-
     return (
         <div className={cx('wrapper', 'mt-8')}>
             <div className={cx('wrapper-banner', 'flex items-center justify-around')}>
                 <ImageBanner
                     id="BannerLeft"
-                    isViewPort={isInViewportBannerLeft}
                     src={images.bannerCoupleLeft}
-                    refBanner={refBannerLeft}
                 />
                 <div className={cx('wrapper-banner-ImgCenter')}>
                     <Image
@@ -63,9 +42,7 @@ export default function Home() {
                 </div>
                 <ImageBanner
                     id="BannerRight"
-                    isViewPort={isInViewportBannerRight}
                     src={images.bannerCoupleRight}
-                    refBanner={refBannerRight}
                 />
             </div>
             <div className={cx('wrapper_NumberOfDays', 'flex items-center mt-4')}>
@@ -99,7 +76,7 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="w-2/4 flex items-center justify-center my-4">
-                    <video width={300} height={500} autoPlay muted loop>
+                    <video className={cx('wrapper_NumberOfDays-video')} width={300} height={500} autoPlay muted loop>
                         <source
                             src={
                                 'https://firebasestorage.googleapis.com/v0/b/couple-85135.appspot.com/o/Albums%2F1686372287426.mp4?alt=media&token=f01df81a-8e50-431a-b2a3-fdd1539dd459'

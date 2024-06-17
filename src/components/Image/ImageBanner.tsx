@@ -1,39 +1,49 @@
-import classNames from "classnames/bind";
-import Image from "next/image";
-import styles from "../../components/Home/home.module.scss";
-import { RefObject, useState } from "react";
-
-interface ImageProps{
-    refBanner: RefObject<HTMLDivElement>;
-    src: any,
-    isViewPort: boolean
-    id:string
+import classNames from 'classnames/bind';
+import Image from 'next/image';
+import styles from '../../components/Home/home.module.scss';
+import { RefObject, useState } from 'react';
+import { motion } from 'framer-motion';
+interface ImageProps {
+    src: any;
+    id: string;
 }
 
 const cx = classNames.bind(styles);
-export default function ImageBanner({refBanner,src,isViewPort,id}:ImageProps) {
+export default function ImageBanner({ src, id }: ImageProps) {
     const [isHovered, setIsHovered] = useState(false);
-    const [classNameZoom,setClassNameZoom] = useState<string>("");
+    const [inView, setInView] = useState(false);
+    const [classNameZoom, setClassNameZoom] = useState<string>('');
     const handleMouseEnter = () => {
-        setClassNameZoom("animate__zoomInUp")
+        setClassNameZoom('animate__zoomInUp');
         setIsHovered(true);
     };
 
     const handleMouseLeave = () => {
-        setClassNameZoom("animate__zoomOutUp")
+        setClassNameZoom('animate__zoomOutUp');
         setTimeout(() => {
             setIsHovered(true);
-        }, 300);
+        }, 100);
     };
-    
+
     return (
-        <div 
-            className="animate__animated"
-            ref={refBanner}
+        <motion.div
+            className={cx(
+                'animate__animated',
+                id === 'BannerLeft'
+                    ? inView
+                        ? 'animate__fadeInTopLeft'
+                        : 'animate__fadeOutTopLeft'
+                    : inView
+                    ? 'animate__fadeInTopRight'
+                    : 'animate__fadeOutTopRight',
+            )}
+            viewport={{ amount: 'some' }}
+            onViewportEnter={() => setInView(true)}
+            onViewportLeave={() => setInView(false)}
         >
-            <a 
-                href={id ==="BannerLeft" ? "/profiles/men" : "/profiles/women"}
-                style={{position: "relative"}}
+            <motion.a
+                href={id === 'BannerLeft' ? '/profiles/men' : '/profiles/women'}
+                style={{ position: 'relative' }}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
@@ -41,27 +51,28 @@ export default function ImageBanner({refBanner,src,isViewPort,id}:ImageProps) {
                     className={cx('wrapper-banner-ImgCenter-imgBanner')}
                     src={src}
                     alt="Banner Couple"
-                    style={{display: isViewPort ? "block" : "none"}}
+                    style={{ display: inView ? 'block' : 'none' }}
                 />
                 {isHovered ? (
-                    <div 
-                        className={cx('wrapper-banner-ImgCenter-imgBanner-seeMore',
-                                    'animate__animated',classNameZoom)}
+                    <div
+                        className={cx('wrapper-banner-ImgCenter-imgBanner-seeMore', 'animate__animated', classNameZoom)}
                     >
                         <div>
                             <div className="mb-4">
                                 <p className={cx('text-white text-sm font-semibold')}>
-                                    {id === "BannerLeft" ? "Nguyễn Thanh Quỳnh Linh" : "Lê Thị Kim Yến"}
+                                    {id === 'BannerLeft' ? 'Nguyễn Thanh Quỳnh Linh' : 'Lê Thị Kim Yến'}
                                 </p>
                                 <p className={cx('text-white text-xs font-semibold ')}>
-                                    {id === "BannerLeft" ? "21-06-2002" : "06-04-2002"}
+                                    {id === 'BannerLeft' ? '21-06-2002' : '06-04-2002'}
                                 </p>
                             </div>
                             <span className={cx('wrapper-banner-ImgCenter-imgBanner-seeMore-btn')}>Xem</span>
                         </div>
                     </div>
-                ) : ""}
-            </a>
-        </div>
-    )
+                ) : (
+                    ''
+                )}
+            </motion.a>
+        </motion.div>
+    );
 }

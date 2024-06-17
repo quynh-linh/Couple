@@ -21,6 +21,7 @@
         "axios": "^1.7.2",
         "buffer": "^6.0.3",
         "classnames": "^2.5.1",
+        "framer-motion": "^11.2.10",
         "intersection-observer": "^0.12.2",
         "keen-slider": "^6.8.6",
         "moment-timezone": "^0.5.45",

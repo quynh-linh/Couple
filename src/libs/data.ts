@@ -1,4 +1,3 @@
-import TextComponent from '@/components/ModernTimeline/TextComponent';
 const months = [
     { vi: 'thg 1', en: 'January' },
     { vi: 'thg 2', en: 'February' },

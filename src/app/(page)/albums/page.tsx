@@ -1,6 +1,7 @@
 'use client';
 import styles from '@/components/Albums/Albums.module.scss';
 import SlideMultipleItems from '@/components/Albums/Slider/Slider';
+import HeartLoader from '@/components/Loader/HeartLoader';
 import Timeline from '@/components/Timeline/Timeline';
 import { get } from '@/libs/axiosConfig';
 import { fetchDataMoments } from '@/libs/fetchData';
@@ -24,8 +25,13 @@ export default function Albums(params: AlbumsProps) {
         dispatch(findAllListImageByYears({ years: 2023 }));
         dispatch(findAllListImageByYears({ years: 2024 }));
     }, [dispatch]);
+
     return isLoading ? (
-        <div>Lỗi đang tải...</div>
+        <div id="albums-scroll" className={cx('albums')}>
+            <div className={cx('relative w-full h-full flex items-center justify-center')}>
+                <HeartLoader />
+            </div>
+        </div>
     ) : (
         <div id="albums-scroll" className={cx('albums')}>
             <div className={cx('albums-outstanding')}>

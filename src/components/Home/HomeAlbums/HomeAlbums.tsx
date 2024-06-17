@@ -7,7 +7,7 @@ export default function Albums(params: AlbumsProps) {
     return (
         <div className={cx('grid', 'my-4')}>
             <p className={cx('grid-title')}>Ảnh đi chơi nè!</p>
-            <div className={cx('grid-container')}>
+            <div className={cx('grid-container','mt-4')}>
                 {images.map((image, index) => (
                     <div key={index}>
                         <img
@@ -20,9 +20,9 @@ export default function Albums(params: AlbumsProps) {
                     </div>
                 ))}
             </div>
-            <div className={cx('grid-footer')}>
+            <a href="/albums" className={cx('grid-footer')}>
                 <p>Xem thêm</p>
-            </div>
+            </a>
         </div>
     );
 }
