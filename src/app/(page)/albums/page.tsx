@@ -3,7 +3,6 @@ import styles from '@/components/Albums/Albums.module.scss';
 import SlideMultipleItems from '@/components/Albums/Slider/Slider';
 import HeartLoader from '@/components/Loader/HeartLoader';
 import Timeline from '@/components/Timeline/Timeline';
-import { get } from '@/libs/axiosConfig';
 import { fetchDataMoments } from '@/libs/fetchData';
 import { useAppDispatch } from '@/libs/hook';
 import { findAllListImageByYears } from '@/redux/features/cloudinarySlice';
