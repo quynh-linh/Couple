@@ -13,87 +13,87 @@ import 'tippy.js/dist/tippy.css';
 
 const cx = classNames.bind(styles);
 const BackToTopButton: React.FC = () => {
-    const [showButton, setShowButton] = useState<boolean>(false);
-    const [showControls, setShowControls] = useState<boolean>(false);
-    const isEnable = typeof window !== 'undefined' && Boolean(localStorage.getItem('enable'));
-    const [showControlsHearts, setShowControlsHearts] = useState<boolean>(isEnable);
-    const dispatch = useAppDispatch();
-    const selector = useAppSelector((state) => state.heart);
-    const handleClickShowControl = () => {
-        setShowControls(!showControls);
+  const [showButton, setShowButton] = useState<boolean>(false);
+  const [showControls, setShowControls] = useState<boolean>(false);
+  const isEnable = typeof window !== 'undefined' && Boolean(localStorage.getItem('enable'));
+  const [showControlsHearts, setShowControlsHearts] = useState<boolean>(isEnable);
+  const dispatch = useAppDispatch();
+  const selector = useAppSelector((state) => state.heart);
+  const handleClickShowControl = () => {
+    setShowControls(!showControls);
+  };
+
+  const toggleHeartCreation = () => {
+    setShowControlsHearts(!showControlsHearts);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setShowControls(false);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
     };
 
-    const toggleHeartCreation = () => {
-        setShowControlsHearts(!showControlsHearts);
-    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setShowControls(false);
-    };
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 300) {
-                setShowButton(true);
-            } else {
-                setShowButton(false);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    useEffect(() => {
-        if (showControlsHearts) {
-            dispatch(initHearts({ status: showControlsHearts }));
-        } else {
-            dispatch(removeHearts({ status: showControlsHearts }));
-        }
-    }, [showControlsHearts, dispatch]);
-    return (
-        <>
-            <a className={cx('backToTop')}>
-                <div className="relative hover:cursor-pointer" onClick={handleClickShowControl}>
-                    {showControls ? <CloseIcon /> : <MoreHorizIcon />}
-                </div>
-                {showControls ? (
-                    <div
-                        className={cx(
-                            'backToTop-controls',
-                            'text-4xl',
-                            'animate__animated',
-                            showControls ? 'animate__bounceInUp' : 'animate__bounceInDown',
-                        )}
-                        style={{ top: !showButton ? '-50px' : '-100px' }}
-                    >
-                        <Tippy content="Có thể tắt/bật hiển thị trái tim trong website">
-                            <div
-                                onClick={toggleHeartCreation}
-                                className={cx(
-                                    'backToTop-controls-parent',
-                                    ' hover:cursor-pointer',
-                                    selector.status ? 'text-red-700' : '',
-                                )}
-                            >
-                                <FavoriteIcon />
-                            </div>
-                        </Tippy>
-                        {showButton && (
-                            <Tippy content="Trở về đầu trang">
-                                <div className={cx('backToTop-controls-parent', ' hover:cursor-pointer')}>
-                                    <KeyboardArrowUpIcon onClick={scrollToTop} />
-                                </div>
-                            </Tippy>
-                        )}
-                    </div>
-                ) : (
-                    ''
+  useEffect(() => {
+    if (showControlsHearts) {
+      dispatch(initHearts({ status: showControlsHearts }));
+    } else {
+      dispatch(removeHearts({ status: showControlsHearts }));
+    }
+  }, [showControlsHearts, dispatch]);
+  return (
+    <>
+      <a className={cx('backToTop', 'bottom-[30px] right-[15px] md:right-[30px]')}>
+        <div className="relative hover:cursor-pointer" onClick={handleClickShowControl}>
+          {showControls ? <CloseIcon /> : <MoreHorizIcon />}
+        </div>
+        {showControls ? (
+          <div
+            className={cx(
+              'backToTop-controls',
+              'text-4xl',
+              'animate__animated',
+              showControls ? 'animate__bounceInUp' : 'animate__bounceInDown',
+            )}
+            style={{ top: !showButton ? '-50px' : '-100px' }}
+          >
+            <Tippy content="Có thể tắt/bật hiển thị trái tim trong website">
+              <div
+                onClick={toggleHeartCreation}
+                className={cx(
+                  'backToTop-controls-parent',
+                  ' hover:cursor-pointer',
+                  selector.status ? 'text-red-700' : '',
                 )}
-            </a>
-        </>
-    );
+              >
+                <FavoriteIcon />
+              </div>
+            </Tippy>
+            {showButton && (
+              <Tippy content="Trở về đầu trang">
+                <div className={cx('backToTop-controls-parent', ' hover:cursor-pointer')}>
+                  <KeyboardArrowUpIcon onClick={scrollToTop} />
+                </div>
+              </Tippy>
+            )}
+          </div>
+        ) : (
+          ''
+        )}
+      </a>
+    </>
+  );
 };
 
 export default BackToTopButton;

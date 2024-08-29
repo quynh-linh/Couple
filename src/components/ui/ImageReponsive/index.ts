@@ -27,8 +27,8 @@ export default function ImageResponsive({
       {mobile || desktop ? (
         <Image
           className={clsx(classNameMobile, `!block lg:!hidden w-full h-full object-cover`)}
-          src={(mobile || desktop) || ''}
-          alt='Image'
+          src={mobile || desktop || ''}
+          alt="Image"
           fill
           priority={priority}
           {...props}
@@ -39,7 +39,7 @@ export default function ImageResponsive({
         <Image
           className={clsx(className, desktop && '!hidden lg:!block w-full h-full object-cover')}
           src={desktop}
-          alt='Image'
+          alt="Image"
           fill
           priority={priority}
           {...props}

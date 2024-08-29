@@ -1,11 +1,8 @@
 .wrapper {
   &_NumberOfDays {
-    background: url(https://utfs.io/f/46d8bcf5-fe05-4a08-923f-f6a56c2a8b02-m15jgy.jpg);
-    object-fit: contain;
     &-title {
       font-family: var(--font-Italic);
       color: white;
-      font-size: 2rem;
       font-optical-sizing: auto;
       font-weight: 500;
       font-style: normal;
@@ -20,7 +17,7 @@
     }
     &-video {
       border-radius: 10px;
-      box-shadow: rgb(232 18 36 / 30%) 0px 22px 70px 4px;
+      box-shadow: rgb(42 39 39 / 30%) 0px 22px 70px 4px;
     }
   }
 }
