@@ -7,7 +7,7 @@ interface TitleProps{
 const cx = classNames.bind(styles)
 export default  function Title(props: TitleProps) {
     return (
-        <div className={cx("text-container")}>
+        <div className={cx("text-container",'text-[40px] md:text-[95px]')}>
             <span><p className="mx-4">26</p></span>
             <span><FavoriteIcon/></span>
             <span><p className="mx-4">04</p></span>

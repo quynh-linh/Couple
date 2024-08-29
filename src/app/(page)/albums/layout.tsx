@@ -1,17 +1,17 @@
 import Sidebar from '@/components/Albums/SideBar/Sidebar';
-import Header from '@/components/common/Header/page';
+import { Header } from '@/components/common/Header';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Tập ảnh',
+  title: 'Tập ảnh',
 };
 
 export default function AlbumsLayout({ children }: { children: React.ReactNode }) {
-    return (
-        <>
-            <Header position='Sidebar'/>
-            <Sidebar/>
-            {children}
-        </>
-    );
+  return (
+    <>
+      <Header position="Sidebar" />
+      <Sidebar />
+      {children}
+    </>
+  );
 }
